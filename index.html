@@ -403,6 +403,53 @@ a { color: inherit; }
   color: var(--text-2);
 }
 
+/* ── TESTIMONIAL ─────────────────────────────────── */
+.testimonial-section {
+  background: var(--pitch);
+  padding: 80px 24px;
+}
+.testimonial-inner {
+  max-width: 760px; margin: 0 auto;
+  text-align: center;
+}
+.testimonial-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.8vw, 30px);
+  line-height: 1.45;
+  color: #fff;
+  text-wrap: balance;
+  margin-bottom: 32px;
+  position: relative;
+}
+.testimonial-quote::before {
+  content: '\201C';
+  font-size: 5em; line-height: 0;
+  color: var(--lime); opacity: 0.4;
+  vertical-align: -0.5em;
+  margin-right: 4px;
+}
+.testimonial-attribution {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+}
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--pitch-mid);
+  border: 2px solid rgba(196,242,64,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 18px; color: var(--lime);
+  flex-shrink: 0;
+}
+.testimonial-who { text-align: left; }
+.testimonial-name {
+  font-size: 15px; font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+.testimonial-club {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+
 /* ── WHITE LABEL CARD ────────────────────────────── */
 .wl-card {
   margin-top: 28px;
@@ -819,6 +866,22 @@ footer {
         </div>
         <div class="pain-before">You find out about a no-show when it's already too late to call someone in — and that trainer still ends up on payroll.</div>
         <div class="pain-after">Cancellations trigger instant reassignment. No-shows marked after the session are excluded from pay automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIAL ───────────────────────────────── -->
+<section class="testimonial-section">
+  <div class="testimonial-inner">
+    <blockquote class="testimonial-quote">
+      We used to manage 60+ trainers across weekend sessions with group texts and a spreadsheet. Now assignments go out Thursday, trainers confirm by text, and payroll basically runs itself. It's made the whole operation smoother for the club and for the trainers.
+    </blockquote>
+    <div class="testimonial-attribution">
+      <div class="testimonial-avatar">N</div>
+      <div class="testimonial-who">
+        <div class="testimonial-name">Nico Francia</div>
+        <div class="testimonial-club">Director of Coaching, BBSC</div>
       </div>
     </div>
   </div>
