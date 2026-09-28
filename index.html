@@ -1,0 +1,1069 @@
+<title>Pitchside</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap">
+
+<style>
+:root {
+  --lime: #C4F240;
+  --lime-hover: #A8D430;
+  --pitch: #0C2218;
+  --pitch-mid: #163D28;
+  --green-accent: #1E7A45;
+  --green-soft: #2D9E5E;
+
+  --bg: #F4F6F2;
+  --bg-tint: #ECF0E8;
+  --bg-card: #FFFFFF;
+  --text: #0E1C15;
+  --text-2: #3D6B52;
+  --text-3: #7EA88A;
+  --border: #D0DDD5;
+  --border-strong: #A8C4B2;
+
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0C1810;
+    --bg-tint: #101D14;
+    --bg-card: #152019;
+    --text: #E2EFE6;
+    --text-2: #7EB594;
+    --text-3: #4D7A5E;
+    --border: #1C3626;
+    --border-strong: #2A5038;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0C1810;
+  --bg-tint: #101D14;
+  --bg-card: #152019;
+  --text: #E2EFE6;
+  --text-2: #7EB594;
+  --text-3: #4D7A5E;
+  --border: #1C3626;
+  --border-strong: #2A5038;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ── NAV ─────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 200;
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(12, 34, 24, 0.90);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(196, 242, 64, 0.1);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 21px;
+  color: var(--lime);
+  text-decoration: none;
+  letter-spacing: -0.2px;
+}
+.nav-logo span { opacity: 0.45; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-link {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 14px; font-weight: 500;
+  cursor: pointer; border: none;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+.btn-lime { background: var(--lime); color: #0A1E10; }
+.btn-lime:hover { background: var(--lime-hover); box-shadow: 0 4px 16px rgba(196,242,64,0.25); }
+.btn-lime-lg { font-size: 16px; padding: 14px 32px; }
+.btn-ghost {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.14); }
+
+/* ── HERO ────────────────────────────────────────── */
+.hero {
+  background: var(--pitch);
+  padding: 148px 24px 100px;
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+.hero-pitch {
+  position: absolute; inset: 0;
+  opacity: 0.055;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 72px;
+  align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 22px;
+}
+.eyebrow-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lime);
+  animation: dot-pulse 2.4s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5.5vw, 66px);
+  line-height: 1.08;
+  color: #fff;
+  text-wrap: balance;
+  margin-bottom: 22px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em { font-style: italic; color: var(--lime); }
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.65;
+  max-width: 460px;
+  margin-bottom: 40px;
+}
+.hero-form {
+  display: flex; gap: 10px;
+  max-width: 460px;
+}
+.hero-input {
+  flex: 1; min-width: 0;
+  padding: 13px 20px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  font-family: var(--sans); font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.hero-input::placeholder { color: rgba(255,255,255,0.38); }
+.hero-input:focus { border-color: var(--lime); background: rgba(255,255,255,0.1); }
+.hero-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.01em;
+}
+.thanks-msg {
+  display: none;
+  padding: 16px 22px;
+  border-radius: 12px;
+  background: rgba(196,242,64,0.1);
+  border: 1px solid rgba(196,242,64,0.3);
+  color: var(--lime);
+  font-size: 15px;
+  max-width: 460px;
+}
+.thanks-msg.visible { display: block; }
+
+/* ── DASHBOARD MOCKUP ────────────────────────────── */
+.mockup {
+  background: #0A1C11;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 48px 96px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+}
+.mockup-topbar {
+  background: #06110A;
+  padding: 12px 16px;
+  display: flex; align-items: center; gap: 7px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mock-dot { width: 11px; height: 11px; border-radius: 50%; }
+.mock-dot-r { background: #FF5F57; }
+.mock-dot-y { background: #FEBC2E; }
+.mock-dot-g { background: #28C840; }
+.mockup-url {
+  margin-left: 8px; flex: 1;
+  height: 22px; border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+}
+.mockup-body { padding: 22px 20px; }
+.mock-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+}
+.mock-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: rgba(255,255,255,0.88);
+}
+.mock-badge-lime {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 9px; border-radius: 100px;
+  background: rgba(196,242,64,0.15);
+  color: var(--lime);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.mock-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-bottom: 18px;
+}
+.mock-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 11px 13px;
+}
+.mock-stat-n {
+  font-family: var(--serif); font-style: italic;
+  font-size: 26px; line-height: 1;
+  color: var(--lime);
+}
+.mock-stat-l {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.mock-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 10px;
+}
+.mock-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 11px; border-radius: 8px;
+  margin-bottom: 5px;
+  background: rgba(255,255,255,0.035);
+  transition: background 0.1s;
+}
+.mock-row-name { font-size: 13px; color: rgba(255,255,255,0.75); }
+.mock-pill {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 9px; border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+.mock-pill-g { background: rgba(196,242,64,0.14); color: var(--lime); }
+.mock-pill-b { background: rgba(110,170,255,0.14); color: #8AC0FF; }
+.mock-pill-y { background: rgba(255,210,60,0.14); color: #FFD040; }
+
+/* ── SECTION SHELL ───────────────────────────────── */
+.section { padding: 96px 24px; }
+.section-tint { background: var(--bg-tint); }
+.inner { max-width: 1100px; margin: 0 auto; }
+
+.eyebrow {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--green-accent);
+  margin-bottom: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .eyebrow { color: #5DC98A; }
+}
+:root[data-theme="dark"] .eyebrow { color: #5DC98A; }
+
+.section-h {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.1;
+  text-wrap: balance;
+  color: var(--text);
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+.section-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 540px;
+  line-height: 1.7;
+}
+.centered { text-align: center; }
+.centered .section-sub { margin: 0 auto; }
+
+/* ── PAIN ────────────────────────────────────────── */
+.pain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  margin-top: 56px;
+  gap: 1px; background: var(--border);
+}
+.pain-card {
+  background: var(--bg-card);
+  padding: 34px 30px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.pain-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: #EAF5EE; color: var(--green-accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pain-icon { background: rgba(91,201,138,0.1); color: #5DC98A; }
+}
+:root[data-theme="dark"] .pain-icon { background: rgba(91,201,138,0.1); color: #5DC98A; }
+.pain-icon svg { width: 20px; height: 20px; }
+.pain-before {
+  font-size: 14px; font-style: italic;
+  color: var(--text-3); line-height: 1.6;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.pain-before::before { content: '"'; }
+.pain-before::after { content: '"'; }
+.pain-after {
+  font-size: 15px; font-weight: 500; line-height: 1.5;
+  color: #185C30;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pain-after { color: #5DC98A; }
+}
+:root[data-theme="dark"] .pain-after { color: #5DC98A; }
+
+/* ── FEATURES ────────────────────────────────────── */
+.feature-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 22px; margin-top: 56px;
+}
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 11px;
+  background: #EAF5EE; color: var(--green-accent);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .feature-icon { background: rgba(91,201,138,0.1); color: #5DC98A; }
+  :root:not([data-theme="light"]) .feature-card { background: var(--bg-card); }
+}
+:root[data-theme="dark"] .feature-icon { background: rgba(91,201,138,0.1); color: #5DC98A; }
+:root[data-theme="dark"] .feature-card { background: var(--bg-card); }
+.feature-icon svg { width: 22px; height: 22px; }
+.feature-title {
+  font-size: 16px; font-weight: 600;
+  color: var(--text); margin-bottom: 8px;
+}
+.feature-desc {
+  font-size: 14px; line-height: 1.65;
+  color: var(--text-2);
+}
+
+/* ── WHITE LABEL CARD ────────────────────────────── */
+.wl-card {
+  margin-top: 28px;
+  background: var(--pitch);
+  border-radius: 22px;
+  padding: 52px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.wl-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 16px;
+}
+.wl-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 32px);
+  color: #fff; line-height: 1.25;
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.wl-desc {
+  font-size: 15px; line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  max-width: 440px;
+  margin-bottom: 26px;
+}
+.wl-bullets {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.wl-bullets li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: rgba(255,255,255,0.65);
+}
+.wl-bullets li::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--lime); flex-shrink: 0;
+}
+.wl-swatches {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.wl-swatch {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0a0a0a;
+}
+.wl-swatch-nav {
+  height: 34px;
+  display: flex; align-items: center;
+  padding: 0 14px;
+  gap: 8px;
+}
+.wl-swatch-logo {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  flex-shrink: 0;
+}
+.wl-swatch-name {
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+.wl-swatch-pill {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 100px;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+}
+.wl-swatch-body {
+  padding: 10px 14px 12px;
+  display: flex; gap: 6px;
+}
+.wl-swatch-row {
+  flex: 1;
+  height: 8px; border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+}
+.wl-swatch-row.w60 { max-width: 60%; }
+.wl-swatch-row.w40 { max-width: 40%; }
+@media (max-width: 900px) {
+  .wl-card { grid-template-columns: 1fr; padding: 40px 32px; gap: 36px; }
+}
+@media (max-width: 600px) {
+  .wl-card { padding: 32px 20px; }
+}
+
+/* ── HOW IT WORKS ────────────────────────────────── */
+.steps {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; margin-top: 56px;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 34px; left: calc(16.66% + 32px); right: calc(16.66% + 32px);
+  height: 1px;
+  background: var(--border-strong);
+  background: repeating-linear-gradient(90deg, var(--border-strong) 0, var(--border-strong) 6px, transparent 6px, transparent 12px);
+}
+.step { padding: 0 32px; }
+.step-num {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-style: italic;
+  font-size: 28px; color: var(--text-2);
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.step-title {
+  font-size: 18px; font-weight: 600;
+  color: var(--text); margin-bottom: 10px;
+}
+.step-desc {
+  font-size: 15px; line-height: 1.65;
+  color: var(--text-2);
+}
+
+/* ── PRICING ─────────────────────────────────────── */
+.pricing-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px; max-width: 780px;
+  margin: 56px auto 0;
+}
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 22px; padding: 38px;
+  display: flex; flex-direction: column;
+}
+.pricing-card.featured {
+  background: var(--pitch);
+  border-color: var(--pitch);
+}
+.pricing-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--lime); color: #0A1E10;
+  padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 22px; align-self: flex-start;
+}
+.pricing-tier {
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--text-2); margin-bottom: 14px;
+}
+.pricing-card.featured .pricing-tier { color: rgba(255,255,255,0.45); }
+.pricing-price {
+  font-family: var(--serif);
+  font-size: 56px; line-height: 1;
+  color: var(--text); margin-bottom: 4px;
+  letter-spacing: -1px;
+}
+.pricing-price sup {
+  font-family: var(--sans); font-size: 22px;
+  vertical-align: 0.5em; letter-spacing: 0;
+}
+.pricing-card.featured .pricing-price { color: #fff; }
+.pricing-per {
+  font-size: 14px; color: var(--text-3);
+  margin-bottom: 6px;
+}
+.pricing-card.featured .pricing-per { color: rgba(255,255,255,0.4); }
+.pricing-save {
+  font-size: 13px; font-weight: 500;
+  color: var(--lime); margin-bottom: 28px;
+}
+.pricing-divider {
+  height: 1px; background: var(--border);
+  margin: 24px 0;
+}
+.pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.1); }
+.pricing-list {
+  list-style: none; flex: 1;
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 30px;
+}
+.pricing-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; line-height: 1.5;
+  color: var(--text-2);
+}
+.pricing-card.featured .pricing-list li { color: rgba(255,255,255,0.65); }
+.pricing-check {
+  width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px;
+  color: var(--green-accent);
+}
+.pricing-card.featured .pricing-check { color: var(--lime); }
+.pricing-trial {
+  text-align: center; margin-top: 16px;
+  font-size: 13px; color: var(--text-3);
+}
+.pricing-card.featured .pricing-trial { color: rgba(255,255,255,0.35); }
+
+/* ── CTA BOTTOM ──────────────────────────────────── */
+.cta-section {
+  background: var(--pitch);
+  padding: 100px 24px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 50px);
+  color: #fff; margin-bottom: 16px;
+  text-wrap: balance;
+  letter-spacing: -0.3px;
+}
+.cta-section p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 40px;
+  max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.cta-form {
+  display: flex; gap: 10px;
+  justify-content: center; flex-wrap: wrap;
+}
+.cta-input {
+  width: 300px;
+  padding: 13px 22px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  font-family: var(--sans); font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.cta-input::placeholder { color: rgba(255,255,255,0.35); }
+.cta-input:focus { border-color: var(--lime); }
+.cta-thanks {
+  display: none;
+  color: var(--lime); font-size: 18px;
+  padding: 16px 24px;
+  border: 1px solid rgba(196,242,64,0.3);
+  border-radius: 12px;
+  background: rgba(196,242,64,0.08);
+  display: none;
+}
+.cta-thanks.visible { display: inline-block; }
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer {
+  background: #07110A;
+  padding: 44px 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 20px; color: rgba(196,242,64,0.65);
+}
+.footer-links {
+  display: flex; align-items: center; gap: 24px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 13px; color: rgba(255,255,255,0.3);
+  text-decoration: none; transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.6); }
+.footer-copy {
+  font-size: 13px; color: rgba(255,255,255,0.2);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+  .mockup { display: none; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+  .step { padding: 0; }
+  .step-num { margin-bottom: 16px; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
+}
+@media (max-width: 600px) {
+  .section { padding: 72px 20px; }
+  .hero { padding: 120px 20px 80px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .hero-form { flex-direction: column; }
+  .hero-input { width: 100%; }
+  .cta-form { flex-direction: column; align-items: center; }
+  .cta-input { width: 100%; max-width: 340px; }
+  .nav-link { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+
+<!-- ── NAV ──────────────────────────────────────── -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Pitch<span>side</span></a>
+  <div class="nav-right">
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#waitlist" class="btn btn-lime" style="padding:9px 18px;font-size:13px;">Request access</a>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section class="hero">
+  <svg class="hero-pitch" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect x="60" y="60" width="880" height="440" fill="none" stroke="white" stroke-width="2"/>
+    <line x1="500" y1="60" x2="500" y2="500" stroke="white" stroke-width="2"/>
+    <circle cx="500" cy="280" r="70" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="500" cy="280" r="4" fill="white"/>
+    <rect x="60" y="170" width="120" height="220" fill="none" stroke="white" stroke-width="2"/>
+    <rect x="820" y="170" width="120" height="220" fill="none" stroke="white" stroke-width="2"/>
+    <rect x="60" y="215" width="50" height="130" fill="none" stroke="white" stroke-width="2"/>
+    <rect x="890" y="215" width="50" height="130" fill="none" stroke="white" stroke-width="2"/>
+    <path d="M60,78 A18,18 0 0,1 78,60" fill="none" stroke="white" stroke-width="2"/>
+    <path d="M922,60 A18,18 0 0,1 940,78" fill="none" stroke="white" stroke-width="2"/>
+    <path d="M940,482 A18,18 0 0,1 922,500" fill="none" stroke="white" stroke-width="2"/>
+    <path d="M78,500 A18,18 0 0,1 60,482" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="180" cy="280" r="3" fill="white"/>
+    <circle cx="820" cy="280" r="3" fill="white"/>
+    <path d="M180,170 A55,55 0 0,0 180,390" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <path d="M820,170 A55,55 0 0,1 820,390" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="4 4"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Now accepting early access
+      </div>
+      <h1>Run your trainer program<br><em>like a pro club.</em></h1>
+      <p class="hero-sub">Pitchside handles scheduling, SMS confirmations, payroll, and attendance — so you can focus on the soccer, not the admin.</p>
+
+      <form class="hero-form" id="hero-form" onsubmit="handleWaitlist(event,'hero')">
+        <input type="email" class="hero-input" id="hero-email" placeholder="your@club.com" required autocomplete="email">
+        <button type="submit" class="btn btn-lime btn-lime-lg">Get early access</button>
+      </form>
+      <div class="hero-note">No credit card required. 30-day free trial.</div>
+      <div class="thanks-msg" id="hero-thanks">
+        You're on the list. We'll be in touch soon.
+      </div>
+    </div>
+
+    <div class="mockup" aria-hidden="true">
+      <div class="mockup-topbar">
+        <span class="mock-dot mock-dot-r"></span>
+        <span class="mock-dot mock-dot-y"></span>
+        <span class="mock-dot mock-dot-g"></span>
+        <div class="mockup-url"></div>
+      </div>
+      <div class="mockup-body">
+        <div class="mock-head">
+          <span class="mock-title">Weekend 12 — Roster</span>
+          <span class="mock-badge-lime">Oct 3–4</span>
+        </div>
+        <div class="mock-stats">
+          <div class="mock-stat"><div class="mock-stat-n">14</div><div class="mock-stat-l">Assigned</div></div>
+          <div class="mock-stat"><div class="mock-stat-n">11</div><div class="mock-stat-l">Confirmed</div></div>
+          <div class="mock-stat"><div class="mock-stat-n">3</div><div class="mock-stat-l">Pending</div></div>
+        </div>
+        <div class="mock-label">Saturday — Sparks (9–12 AM)</div>
+        <div class="mock-row"><span class="mock-row-name">Jordan Hayes</span><span class="mock-pill mock-pill-g">Confirmed</span></div>
+        <div class="mock-row"><span class="mock-row-name">Marcus Chen</span><span class="mock-pill mock-pill-g">Confirmed</span></div>
+        <div class="mock-row"><span class="mock-row-name">Sofia Torres</span><span class="mock-pill mock-pill-b">Assigned</span></div>
+        <div class="mock-row"><span class="mock-row-name">Tyler Brooks</span><span class="mock-pill mock-pill-g">Confirmed</span></div>
+        <div style="margin-top:16px" class="mock-label">Saturday — Kindergarten (12:30–3 PM)</div>
+        <div class="mock-row"><span class="mock-row-name">Emma Nguyen</span><span class="mock-pill mock-pill-g">Confirmed</span></div>
+        <div class="mock-row"><span class="mock-row-name">Ryan Patel</span><span class="mock-pill mock-pill-y">Awaiting</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAIN POINTS ───────────────────────────────── -->
+<section class="section" id="problems">
+  <div class="inner">
+    <div class="eyebrow">Sound familiar?</div>
+    <h2 class="section-h">The weekend admin that shouldn't exist.</h2>
+    <p class="section-sub">Most clubs manage their trainer programs with texts, spreadsheets, and memory. It works — until it doesn't.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="pain-before">Every weekend starts with a dozen texts checking who's showing up — and half of them don't reply until Saturday morning.</div>
+        <div class="pain-after">Send assignments Thursday. Trainers confirm by text. You know your full roster by Friday night.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="pain-before">Payroll is three spreadsheets, a calculator, and two hours you don't have — every single pay period.</div>
+        <div class="pain-after">Sessions are tracked automatically. Pull a pay report for any date range and export it in one click.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="pain-before">You find out about a no-show when it's already too late to call someone in — and that trainer still ends up on payroll.</div>
+        <div class="pain-after">Cancellations trigger instant reassignment. No-shows marked after the session are excluded from pay automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ──────────────────────────────────── -->
+<section class="section section-tint" id="features">
+  <div class="inner">
+    <div class="centered">
+      <div class="eyebrow">Everything in one place</div>
+      <h2 class="section-h">Built for how youth clubs actually run.</h2>
+      <p class="section-sub">Not a general-purpose HR tool adapted for sports. Purpose-built for clubs that run weekend training programs with 10–80 trainers.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="feature-title">Trainer scheduling</div>
+        <div class="feature-desc">Assign trainers to sessions from your available pool. The system tracks who worked which weekends and surfaces the right people first.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.1 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16z"/></svg>
+        </div>
+        <div class="feature-title">SMS confirmations</div>
+        <div class="feature-desc">Trainers get a text with their session details and training plan link. They reply YES or NO. That's the whole flow — no app required.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="feature-title">Automatic payroll</div>
+        <div class="feature-desc">Hours tracked from session times. Sparks program premium applied automatically. Export a CSV pay report for any date range in one click.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="feature-title">Mobile attendance</div>
+        <div class="feature-desc">After each session, open a signed link on your phone. Tap any trainer who didn't show. No-shows drop out of payroll instantly — no login needed.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="feature-title">Training plan delivery</div>
+        <div class="feature-desc">Upload your weekly plans for each program. Links go out automatically with every assignment SMS — the right plan to the right trainer.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feature-title">W9 &amp; compliance</div>
+        <div class="feature-desc">See at a glance which trainers are missing W9s, have unpaid balances, or need follow-up. No more hunting through folders before tax season.</div>
+      </div>
+    </div>
+
+    <!-- White-label full-width feature card -->
+    <div class="wl-card">
+      <div>
+        <div class="wl-eyebrow">White-label branding</div>
+        <h3 class="wl-title">Your club's brand.<br>Not ours.</h3>
+        <p class="wl-desc">Every trainer sees your club's colors, logo, and name — not Pitchside's. The portal looks like it was built just for you. Great for clubs that care about consistency, or coaches who run programs under their own brand.</p>
+        <ul class="wl-bullets">
+          <li>Upload your club logo — it appears on every page</li>
+          <li>Set your primary and accent colors</li>
+          <li>SMS messages sent under your club's number</li>
+          <li>Custom domain support (yourclub.pitchside.app)</li>
+        </ul>
+      </div>
+      <div class="wl-swatches" aria-hidden="true">
+        <div class="wl-swatch">
+          <div class="wl-swatch-nav" style="background:#1B3A6B;">
+            <div class="wl-swatch-logo" style="background:#4A90D9;"></div>
+            <span class="wl-swatch-name">Metro FC</span>
+            <span class="wl-swatch-pill">Trainers</span>
+          </div>
+          <div class="wl-swatch-body">
+            <div class="wl-swatch-row w60"></div>
+            <div class="wl-swatch-row w40"></div>
+          </div>
+        </div>
+        <div class="wl-swatch">
+          <div class="wl-swatch-nav" style="background:#7B1C1C;">
+            <div class="wl-swatch-logo" style="background:#E85C2A;"></div>
+            <span class="wl-swatch-name">Valley United</span>
+            <span class="wl-swatch-pill">Trainers</span>
+          </div>
+          <div class="wl-swatch-body">
+            <div class="wl-swatch-row w60"></div>
+            <div class="wl-swatch-row w40"></div>
+          </div>
+        </div>
+        <div class="wl-swatch">
+          <div class="wl-swatch-nav" style="background:#3B1A6B;">
+            <div class="wl-swatch-logo" style="background:#9B5DE5;"></div>
+            <span class="wl-swatch-name">City SC</span>
+            <span class="wl-swatch-pill">Trainers</span>
+          </div>
+          <div class="wl-swatch-body">
+            <div class="wl-swatch-row w60"></div>
+            <div class="wl-swatch-row w40"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ──────────────────────────────── -->
+<section class="section" id="how">
+  <div class="inner">
+    <div class="centered">
+      <div class="eyebrow">Getting started</div>
+      <h2 class="section-h">Up and running in a weekend.</h2>
+      <p class="section-sub">Import your roster, set up your season, and your first assignment SMS goes out the same day.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Set up your season</div>
+        <div class="step-desc">Add your training days, set session times by program, and import your trainer roster. Takes about 20 minutes for a full season.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Assign and notify</div>
+        <div class="step-desc">Pick trainers for each session from the available pool. An SMS goes out instantly with their assignment details and a training plan link.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Track and pay</div>
+        <div class="step-desc">Confirmations come in by text. After each session, mark attendance in 60 seconds. Pull payroll whenever you're ready — the math is already done.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ───────────────────────────────────── -->
+<section class="section section-tint" id="pricing">
+  <div class="inner">
+    <div class="centered">
+      <div class="eyebrow">Pricing</div>
+      <h2 class="section-h">One club, one price.</h2>
+      <p class="section-sub">No per-trainer fees. No feature tiers. Everything included — unlimited trainers, unlimited seasons.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Monthly</div>
+        <div class="pricing-price"><sup>$</sup>149</div>
+        <div class="pricing-per">per month, billed monthly</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-list">
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Unlimited trainers</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SMS assignment &amp; confirmation</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Payroll reporting &amp; export</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mobile attendance tracking</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Training plan delivery</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>W9 compliance tracking</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>White-label branding (logo + colors)</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Email support</li>
+        </ul>
+        <a href="#waitlist" class="btn btn-ghost" style="width:100%;justify-content:center;border-color:var(--border);color:var(--text);">Start free trial</a>
+        <div class="pricing-trial">30 days free, no card required</div>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Best value</div>
+        <div class="pricing-tier">Annual</div>
+        <div class="pricing-price"><sup>$</sup>99</div>
+        <div class="pricing-per">per month, billed $1,188/year</div>
+        <div class="pricing-save">You save $612 per year</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-list">
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in monthly</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Custom onboarding session</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Early access to new features</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Multi-season data history</li>
+          <li><svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Custom domain support</li>
+        </ul>
+        <a href="#waitlist" class="btn btn-lime btn-lime-lg" style="width:100%;justify-content:center;">Start free trial</a>
+        <div class="pricing-trial">30 days free, no card required</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOTTOM CTA ─────────────────────────────────── -->
+<section class="cta-section" id="waitlist">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.04;pointer-events:none" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect x="40" y="40" width="920" height="320" fill="none" stroke="white" stroke-width="2"/>
+    <line x1="500" y1="40" x2="500" y2="360" stroke="white" stroke-width="2"/>
+    <circle cx="500" cy="200" r="60" fill="none" stroke="white" stroke-width="2"/>
+  </svg>
+  <div style="position:relative;z-index:1">
+    <h2>Ready to simplify your weekends?</h2>
+    <p>Join clubs already using Pitchside to run their trainer programs without the spreadsheets.</p>
+    <form class="cta-form" id="cta-form" onsubmit="handleWaitlist(event,'cta')">
+      <input type="email" class="cta-input" id="cta-email" placeholder="your@club.com" required autocomplete="email">
+      <button type="submit" class="btn btn-lime btn-lime-lg">Get early access</button>
+    </form>
+    <div class="cta-thanks" id="cta-thanks">You're on the list. We'll reach out soon.</div>
+    <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.3);">No credit card required &nbsp;·&nbsp; 30-day free trial &nbsp;·&nbsp; Cancel anytime</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Pitchside</div>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Pitchside. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+function handleWaitlist(e, source) {
+  e.preventDefault();
+  const emailEl = document.getElementById(source + '-email');
+  const formEl  = document.getElementById(source + '-form');
+  const thanks  = document.getElementById(source + '-thanks');
+  const email   = emailEl.value.trim();
+  if (!email) return;
+  try {
+    const list = JSON.parse(localStorage.getItem('ps_waitlist') || '[]');
+    if (!list.includes(email)) { list.push(email); localStorage.setItem('ps_waitlist', JSON.stringify(list)); }
+  } catch(_) {}
+  formEl.hidden = true;
+  if (source === 'hero') { document.querySelector('.hero-note').hidden = true; }
+  thanks.classList.add('visible');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
